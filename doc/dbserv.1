@@ -1,0 +1,39 @@
+.TH DBSERV 1 "24 August 1987" "Project Athena"
+.SH NAME
+dbserv - GDB Database Server Program
+.SH SYNOPSIS
+dbserv <-sxxxxx> <-lyyyyy>
+.SH DESCRIPTION
+.I Dbserv
+is a server program which can support shared access to an Ingres relational
+database from clients through a Berkeley Unix TCP network.  Client programs are written using
+the GDB database library (libgdb.a).  Clients may be on any machine type
+supported by GDB regardless of the machine type on which dbserv is running.
+
+The -s option is used to specify the service name (from /etc/services) to
+be used by the dbserv program.  An absolute port number may also be given
+in the form -s#nnnn, where nnnn is the decimal port number.
+
+The -l option is used to name a log file in which an extensive record
+of remote accesses to the database will be kept.  This is useful both for
+debugging and for monitoring use of the database.  Note that use of the
+-l option potentially invades the privacy of individual users of the database.
+Before using the -l option for a publicly available database service at
+MIT, the MIT Committee on Privacy should be consulted.
+
+Full information on dbserv and the GDB library is contained in the
+.I GDB User Guide
+and the
+.I GDB Library Reference Manual.
+.SH BUGS
+Clients effectively inherit the Ingres privileges of the user-id running
+the server.  For this reason, it is sometimes useful to run the server
+setuid.
+
+Other bugs are documented in the User Guide.
+.SH SEE ALSO
+gdb(3)
+.SH AUTHOR
+Noah Mendelsohn, IBM T.J. Watson Research and MIT Project Athena
+.br
+Copyright 1987 Massachusetts Institute of Technology.

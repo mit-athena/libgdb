@@ -1,0 +1,33 @@
+.TH GDB 3 "24 August 1987" "Project Athena"
+.SH NAME
+GDB - Global Database and Server Library
+.SH DESCRIPTION
+.I GDB
+is a set of services developed at MIT Project Athena which facilitates the
+creation of communicating programs.  
+It also provides services for remotely accessing and manipulating an
+Ingres database through the internetwork.  
+Among the services provided by GDB are automatic remapping of data
+types when communicating between dissimilar machines.
+GDB also makes it easy to create your choice of 
+.I forking servers
+(the traditional Unix model in which each new client results in a fork)
+and 
+.I non-forking servers
+(in which all clients are serviced asynchronously by a single server
+process.)
+.PP
+Most services of GDB are accessed through the library named libgdb.a.
+There is also a database server program named dbserv.  Full documentation
+is found in two documents:  the 
+.I GDB User Guide
+and the
+.I GDB Library Reference Manual.
+.SH BUGS
+Bugs are documented in the User Guide.
+.SH SEE ALSO
+dbserv(1)
+.SH AUTHOR
+Noah Mendelsohn, IBM T.J. Watson Research and MIT Project Athena
+.br
+Copyright 1987 Massachusetts Institute of Technology.

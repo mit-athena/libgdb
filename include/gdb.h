@@ -10,8 +10,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v $
-/*	$Author: mar $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.2 1989-05-16 21:01:44 mar Exp $
+/*	$Author: probe $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.3 1990-07-17 13:59:01 probe Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -73,7 +73,7 @@
 
 #ifndef GDB_GIVEUP
 #define GDB_GIVEUP(errormsg) g_givup(errormsg);
-#endif  GDB_GIVEUP
+#endif  /* GDB_GIVEUP */
 
 	/*----------------------------------------------------------*/
 	/*	
@@ -1414,7 +1414,7 @@ extern int  (*gdb_fmv)();
 #define   start_db_query			gdb_sdbq
 #else
 #define op_select_any  op_select
-#endif DUMB_7_CHAR_LOADER
+#endif /* DUMB_7_CHAR_LOADER */
 
 extern char *string_alloc();
 extern int   string_free();

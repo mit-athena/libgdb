@@ -4,8 +4,8 @@
 #	Created: 8/24/87
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
-#	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.9 1992-05-01 15:15:35 epeisach Exp $
+#	$Author: miki $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.10 1992-07-16 18:25:03 miki Exp $
 
 CFLAGS=-O -DHESIOD
 LINTFLAGS= "-DHESIOD"
@@ -13,7 +13,9 @@ LINTFLAGS= "-DHESIOD"
 FLAGS=OCFLAGS=${CFLAGS}
 
 #define ISUBDIRS lib include doc
-
+#ifdef sun
+#define SUBDIRS doc
+#endif
 all::
 
 #if defined(vax) && !defined(ultrix)

@@ -12,7 +12,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v $
 #	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v 1.1 1990-04-26 10:52:36 epeisach Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v 1.2 1990-04-26 10:53:54 epeisach Exp $
 #
 #	Note: the profiled versions of the .o files are made in the directory
 #	named profiled.  For the benefit of make, a parallel set of 
@@ -61,7 +61,7 @@ NSTD=
 OPTS=
 
 
-all: libgdb.a libgdb_p.a llib-lgdb.ln
+all:: libgdb.a libgdb_p.a llib-lgdb.ln
 
 libgdb.a: ${LIBOBJS}
 	ar uv libgdb.a ${LIBOBJS}; ranlib libgdb.a

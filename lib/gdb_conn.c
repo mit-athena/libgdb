@@ -11,7 +11,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v $
 /*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.1 1993-04-28 09:36:52 vrt Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.2 1993-04-28 09:37:43 vrt Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -24,7 +24,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_conn_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.1 1993-04-28 09:36:52 vrt Exp $";
+static char rcsid_gdb_conn_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.2 1993-04-28 09:37:43 vrt Exp $";
 #endif
 
 
@@ -39,6 +39,9 @@ static char rcsid_gdb_conn_c[] = "$Header: /afs/dev.mit.edu/source/repository/at
 #include <netinet/in.h>
 #include <netdb.h>
 #include <errno.h>
+#ifdef SOLARIS
+#include <sys/filio.h>
+#endif /* SOLARIS */
 
 extern int errno;
 #ifdef vax

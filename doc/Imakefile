@@ -1,0 +1,56 @@
+###########################################################################
+#
+#				Makefile
+#
+#
+#	Makefile for the GDB Database documentation files.
+#
+#	Copyright 1987 by the Massachusetts Institute of Technology.
+#	For copying and distribution information, see the file
+#	"mit-copyright.h".
+#
+#
+#	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Imakefile,v $
+#	$Author: probe $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Imakefile,v 1.1 1991-06-27 06:17:37 probe Exp $
+#
+###########################################################################
+
+.SUFFIXES: .1 .2 .3 .4 .5 .6 .7 .8 .man .mss .PS 
+INSTDIR=/usr/doc/gdb
+MANINSTDIR=/usr/man
+MAN1FILES=dbserv.1
+MAN3FILES=gdb.3
+SCRIBEFILES=gdb_ugd.mss gdb_library.mss
+
+.mss.PS:
+	scribe $*.mss
+	scribe $*.mss
+
+.1.man:
+	nroff -man $*.1 > $*.man
+.3.man:
+	nroff -man $*.3 > $*.man
+
+
+create_dir($(INSTDIR))
+install_man(dbserv.1,dbserv.1)
+install_man(gdb.3,gdb.3)
+
+install::
+	for i in ${SCRIBEFILES}; do \
+		($(INSTALL) $$i ${DESTDIR}${INSTDIR}/$$i); \
+	done
+
+clean::
+	rm -f a.out core *.s *.o *~ *.PS *.err *.man *.otl *.aux
+
+depend::
+
+lint::
+
+
+# DO NOT DELETE THIS LINE -- make depend may use it at some future time
+# DEPENDENCIES MUST END AT END OF FILE
+
+

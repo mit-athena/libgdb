@@ -12,8 +12,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v $
-/*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.1 1993-10-12 03:25:07 probe Exp $
+/*	$Author: miki $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.2 1994-03-22 13:57:03 miki Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -26,7 +26,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.1 1993-10-12 03:25:07 probe Exp $";
+static char rcsid_gdb_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.2 1994-03-22 13:57:03 miki Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -67,6 +67,11 @@ gdb_init()
 	char *uname;				/* string form of i.d. */
 
 	struct passwd *pw_struct;		/* passwd entry comes back */
+#ifdef SOLARIS
+      struct sigaction act;
+      (void)sigemptyset(&act.sa_mask);
+      act.sa_flags = 0;
+#endif
 						/* here */
        /*
         * So we know we've been initialized, and we do it only once
@@ -111,7 +116,12 @@ gdb_init()
         * closed at the other end.  gdb_move_data handles this condition
         * synchronously.
         */
+#ifdef SOLARIS
+     act.sa_handler= (void (*)()) SIG_IGN;
+     (void) sigaction(SIGPIPE, &act, NULL);
+#else
 	(void) signal(SIGPIPE, SIG_IGN);
+#endif
 
        /*
         * Make a note of the local host and user name

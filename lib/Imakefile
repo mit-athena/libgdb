@@ -12,7 +12,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v $
 #	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v 1.4 1991-07-31 18:13:30 epeisach Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Imakefile,v 1.5 1991-07-31 18:33:07 epeisach Exp $
 #
 #	Note: the profiled versions of the .o files are made in the directory
 #	named profiled.  For the benefit of make, a parallel set of 
@@ -47,44 +47,17 @@ SCRIPT=
 STD=	
 NSTD=	
 
-.c.o:
-	${CC} -c ${CFLAGS} $*.c
+ProfiledObjectRule()
+SimpleLibrary(gdb,${LIBOBJS},${INSTDIR})
+SimpleLint(gdb,${LIBCSRCS})
 
-# see comments at head of makefile for explanation of this
-.c.p:	
-	mv -f $*.o $*.o.hold
-	${CC} -c -pg ${CFLAGS} $*.c
-	mv $*.o profiled/$*.o
-	mv -f $*.o.hold $*.o
-	touch $*.p
-
-OPTS=
-
-
-all:: libgdb.a libgdb_p.a llib-lgdb.ln
-
-libgdb.a: ${LIBOBJS}
-	ar uv libgdb.a ${LIBOBJS}; ranlib libgdb.a
-
-libgdb_p.a: ${LIBOBJS_P}
-	(cd profiled; ar uv ../libgdb_p.a ${LIBOBJS}; ranlib ../libgdb_p.a)
-
-install:: libgdb.a libgdb_p.a llib-lgdb.ln
-	install -c -m 644 libgdb.a ${DESTDIR}${INSTDIR}/libgdb.a
-	ranlib ${DESTDIR}${INSTDIR}/libgdb.a
-	install -c -m 644  libgdb_p.a ${DESTDIR}${INSTDIR}/libgdb_p.a
-	ranlib ${DESTDIR}${INSTDIR}/libgdb_p.a
-	install -c -m 644 llib-lgdb.ln ${DESTDIR}${LINTDIR}/llib-lgdb.ln
 clean::
-	rm -f a.out core *.s *.o *~ *.p profiled/* makedep TAGS .*~ *.a
+	rm -f a.out core *.s *.o *~ *.p profiled//**/* makedep TAGS .*~ *.a
 	rm -f eddep makedep.p sed.file
 #	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} clean; cd ..); done
 
 lint:
 	lint -huv ${LINTFLAGS} ${LIBCSRCS} | egrep -v "warning: possible pointer alignment problem"
-
-llib-lgdb.ln: $(LIBCSRCS)
-	lint $(LINTCFLAG)gdb $(GLINTFLAGS) $(LIBCSRCS)
 
 depend::
 	makedepend -I${INCLIB} ${CFLAGS} ${LIBCSRCS}

@@ -4,19 +4,18 @@
 #	Created: 8/24/87
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
-#	$Author: probe $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.6 1990-11-23 06:18:47 probe Exp $
+#	$Author: epeisach $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.7 1991-01-22 13:11:17 epeisach Exp $
 
 CFLAGS=	 "-O -DHESIOD"
 LINTFLAGS= "-DHESIOD"
 # These are pased to the subdirs
 FLAGS=OCFLAGS=${CFLAGS}
 
-#define ISUBDIRS lib
-#define SUBDIRS lib include doc
+#define ISUBDIRS lib include
+#define SUBDIRS doc 
 
-all::	SUBDIRS
-
+all::
 
 #if defined(vax) && !defined(ultrix)
 # Ingres is installed, so also process the db directory...

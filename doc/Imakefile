@@ -12,7 +12,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Imakefile,v $
 #	$Author: probe $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Imakefile,v 1.1 1991-06-27 06:17:37 probe Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Imakefile,v 1.2 1991-06-27 06:20:01 probe Exp $
 #
 ###########################################################################
 
@@ -33,17 +33,20 @@ SCRIBEFILES=gdb_ugd.mss gdb_library.mss
 	nroff -man $*.3 > $*.man
 
 
-create_dir($(INSTDIR))
 install_man(dbserv.1,dbserv.1)
 install_man(gdb.3,gdb.3)
 
+#if 0
+/* We no longer install things in /usr/doc */
+create_dir($(INSTDIR))
 install::
 	for i in ${SCRIBEFILES}; do \
 		($(INSTALL) $$i ${DESTDIR}${INSTDIR}/$$i); \
 	done
+#endif
 
 clean::
-	rm -f a.out core *.s *.o *~ *.PS *.err *.man *.otl *.aux
+	$(RM) a.out core *.s *.o *~ *.PS *.err *.man *.otl *.aux
 
 depend::
 

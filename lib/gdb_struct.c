@@ -11,7 +11,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_struct.c,v $
 /*	$Author: epeisach $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_struct.c,v 1.1 1991-03-08 10:34:11 epeisach Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_struct.c,v 1.2 1991-03-08 10:36:46 epeisach Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -34,7 +34,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_struct_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_struct.c,v 1.1 1991-03-08 10:34:11 epeisach Exp $";
+static char rcsid_gdb_struct_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_struct.c,v 1.2 1991-03-08 10:36:46 epeisach Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -43,7 +43,9 @@ static char rcsid_gdb_struct_c[] = "$Header: /afs/dev.mit.edu/source/repository/
 #include "gdb.h"
 
 extern char *malloc();
+#ifndef _AIX
 extern int   free();
+#endif
 
 /************************************************************************/
 /*	

@@ -11,12 +11,12 @@
 #
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v $
-#	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.5 1989-10-18 13:12:56 epeisach Exp $
+#	$Author: lwvanels $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.6 1991-07-17 13:48:32 lwvanels Exp $
 #
 ###########################################################################
 
-INSTDIR= /usr/athena
+INSTDIR= /usr/athena/bin
 
 SRCS=	  dbserv.qc
 INCLIB= ../include

@@ -11,8 +11,8 @@
 #
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v $
-#	$Author: shanzer $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.4 1987-10-29 13:56:29 shanzer Exp $
+#	$Author: epeisach $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.5 1989-10-18 13:12:56 epeisach Exp $
 #
 ###########################################################################
 
@@ -51,30 +51,5 @@ install: dbserv
 	install -c -s -m 755 dbserv ${DESTDIR}${INSTDIR}/dbserv
 
 depend: dbserv.c
-	rm -f makedep eddep 
-	for i in dbserv.c; do \
-		(${CC} -I${INCLIB} -M $$i  >> makedep); \
-	 done
-	echo '/^# DO NOT DELETE THIS LINE/+2,$$d' >eddep
-	echo '$$r makedep' >>eddep
-	echo 'w' >>eddep
-	cp Makefile Makefile.bak
-	ed - Makefile < eddep
-	rm eddep makedep 
-	echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
-	echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
-	echo '# see make depend above' >> Makefile
+	makedepend -I${INCLIB} ${CFLAGS} dbserv.c
 
-# DO NOT DELETE THIS LINE -- make depend uses it
-# DEPENDENCIES MUST END AT END OF FILE
-dbserv.o: dbserv.c
-dbserv.o: ../include/mit-copyright.h
-dbserv.o: /usr/include/stdio.h
-dbserv.o: /usr/include/strings.h
-dbserv.o: ../include/gdb.h
-dbserv.o: /usr/include/sys/types.h
-dbserv.o: /usr/include/sys/time.h
-dbserv.o: /usr/include/time.h
-# DEPENDENCIES MUST END AT END OF FILE
-# IF YOU PUT STUFF HERE IT WILL GO AWAY
-# see make depend above

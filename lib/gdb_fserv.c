@@ -31,7 +31,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v $
 /*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.4 1993-04-28 10:14:08 vrt Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.5 1993-04-28 12:59:29 vrt Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,7 +39,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.4 1993-04-28 10:14:08 vrt Exp $";
+static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.5 1993-04-28 12:59:29 vrt Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -226,11 +226,11 @@ gdb_reaper()
 		}
 		if (WIFSIGNALED(status)) {
 #ifdef POSIX
-#ifdef SOLARIS
+#ifdef WCOREDUMP 
 			fprintf(gdb_log,"exited on %s signal%s\n",
 			       sys_siglist[WTERMSIG(status)],
 			       (status.w_coredump?"; core dumped":0));
-#else /* !SOLARIS */
+#else /* !WCOREDUMP */
 			fprintf(gdb_log,"exited on %s signal\n",
 			       sys_siglist[WTERMSIG(status));
 #endif /* SOLARIS */

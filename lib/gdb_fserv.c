@@ -30,8 +30,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v $
-/*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.5 1993-04-28 12:59:29 vrt Exp $
+/*	$Author: miki $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.6 1994-03-22 14:21:47 miki Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,7 +39,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.5 1993-04-28 12:59:29 vrt Exp $";
+static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.6 1994-03-22 14:21:47 miki Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -54,7 +54,7 @@ static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/a
 #ifdef SOLARIS
 #include <sys/filio.h>
 #endif /* SOLARIS */
-
+#include <strings.h>
 /************************************************************************/
 /*	
 /*			create_forking_server 
@@ -256,5 +256,13 @@ gdb_reaper()
 int
 g_do_signals()
 {
+#ifdef SOLARIS
+        struct sigaction act;
+        (void)sigemptyset(&act.sa_mask);
+        act.sa_flags = 0;
+        act.sa_handler= (void (*)()) gdb_reaper;
+        (void) sigaction(SIGCHLD, &act, NULL);
+#else
 	(void) signal(SIGCHLD, gdb_reaper);
+#endif
 }

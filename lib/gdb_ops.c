@@ -12,7 +12,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_ops.c,v $
 /*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_ops.c,v 1.1 1993-04-28 09:38:13 vrt Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_ops.c,v 1.2 1993-04-28 09:40:34 vrt Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -24,7 +24,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_ops_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_ops.c,v 1.1 1993-04-28 09:38:13 vrt Exp $";
+static char rcsid_gdb_ops_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_ops.c,v 1.2 1993-04-28 09:40:34 vrt Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -32,6 +32,9 @@ static char rcsid_gdb_ops_c[] = "$Header: /afs/dev.mit.edu/source/repository/ath
 #include "gdb.h"
 #include <netinet/in.h>
 #include <sys/ioctl.h>
+#ifdef SOLARIS
+#include <sys/filio.h>
+#endif /* SOLARIS */
 #ifdef vax
 extern u_long htonl();
 #endif vax

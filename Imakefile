@@ -4,15 +4,15 @@
 #	Created: 8/24/87
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
-#	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.3 1990-07-12 11:27:04 epeisach Exp $
+#	$Author: probe $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.4 1990-11-20 11:23:49 probe Exp $
 
 CFLAGS=	 "-O -DHESIOD"
 LINTFLAGS= "-DHESIOD"
 # These are pased to the subdirs
 FLAGS=OCFLAGS=${CFLAGS}
 
-SUBDIR= lib   include doc
+SUBDIR= lib include doc
 #define ISUBDIRS lib
 #define SUBDIRS $(SUBDIR)
 
@@ -29,7 +29,7 @@ all::	${SUBDIR} ${DB}
 samps: FRC
 	(cd $@; make ${MFLAGS} OCFLAGS=${CFLAGS} all)
 
-db: FRC
+db::	$(SUBDIR) FRC
 	(cd $@; make -k ${MFLAGS} OCFLAGS=${CFLAGS} all;echo "The make (above) for dbserv may blow up if Ingres is not installed.";echo "The rest of GDB should still build properly.")
 
 FRC::
@@ -37,7 +37,7 @@ FRC::
 # ${STD}:
 # 	${CC} ${CFLAGS} -o $@ $@.c
 
-install:: ${SUBDIR} ${DB}
+install::
 	for i in ${SUBDIR} ${DB}; do  \
 	    (cd $$i; make -k ${MFLAGS} DESTDIR=${DESTDIR} install); done
 	echo "GDB Installation Attempt Complete"

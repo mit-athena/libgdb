@@ -1,0 +1,30 @@
+
+/*
+ ###########################################################################
+ #
+ #				Makefile
+ #
+ #
+ #	Makefile for the GDB Database Include files.
+ #
+ #	Copyright 1987 by the Massachusetts Institute of Technology.
+ #	For copying and distribution information, see the file
+ #	"mit-copyright.h".
+ #
+ #
+ #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/Imakefile,v $
+ #	$Author: probe $
+ #	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/Imakefile,v 1.1 1993-10-12 03:25:32 probe Exp $
+ #
+ ###########################################################################
+*/
+
+INCLUDEFILES=gdb.h gdb_lib.h mit-copyright.h
+INSTALLFILES=gdb.h 
+
+install_file($(INSTALLFILES),$(ATHINCDIR))
+
+depend::
+
+lint::
+

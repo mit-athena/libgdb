@@ -1,0 +1,21 @@
+(cd lib; make  OCFLAGS="-O -DHESIOD" all)
+(cd include; make  OCFLAGS="-O -DHESIOD" all)
+(cd doc; make  OCFLAGS="-O -DHESIOD" all)
+(cd db; make -k  OCFLAGS="-O -DHESIOD" all;echo "The make (above) for dbserv may blow up if Ingres is not installed.";echo "The rest of GDB should still build properly.")
+The make (above) for dbserv may blow up if Ingres is not installed.
+The rest of GDB should still build properly.
+for i in lib   include doc ; do (cd $i; make  DESTDIR= install); done
+install -c -m 644 libgdb.a /usr/athena/lib/libgdb.a
+ranlib /usr/athena/lib/libgdb.a
+install -c -m 644  libgdb_p.a /usr/athena/lib/libgdb_p.a
+ranlib /usr/athena/lib/libgdb_p.a
+for i in gdb.h ; do   (install -c $i /usr/include/$i);  done
+for i in gdb_ugd.mss gdb_library.mss; do  (install -c $i /usr/doc/gdb/$i);  done
+cp: /usr/doc/gdb/gdb_ugd.mss: No such file or directory
+cp: /usr/doc/gdb/gdb_library.mss: No such file or directory
+for i in dbserv.1; do  (install -c $i /usr/man/man1/$i);  done
+for i in gdb.3; do  (install -c $i /usr/man/man3/$i);  done
+for i in db; do   (cd $i; make -k  DESTDIR= install); done
+install -c -s -m 755 dbserv /usr/athena/dbserv
+echo "GDB Installation Attempt Complete"
+GDB Installation Attempt Complete

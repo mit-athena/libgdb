@@ -1,0 +1,19 @@
+/************************************************************************/
+/*	
+/*		This file accompanies GDB version 1.0
+/*	
+/*	Author: Noah Mendelsohn
+/*	IBM T.J. Watson Research and Mit Project Athena
+/*
+/*	Revised:	8/21/87
+/*
+/*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/gdb_version,v $
+/*	$Author: probe $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/gdb_version,v 1.1 1993-10-12 03:25:37 probe Exp $
+/*
+/*	Copyright 1987 by the Massachusetts Institute of Technology.
+/*	For copying and distribution information, see the file mit-copyright.h
+/*	
+/*	
+/************************************************************************/
+

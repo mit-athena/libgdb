@@ -10,8 +10,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v $
-/*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.2 1993-04-28 09:37:43 vrt Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.3 1996-09-20 04:32:05 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -24,13 +24,13 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_conn_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.2 1993-04-28 09:37:43 vrt Exp $";
+static char rcsid_gdb_conn_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_conn.c,v 1.3 1996-09-20 04:32:05 ghudson Exp $";
 #endif
 
 
 #include "mit-copyright.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "gdb.h"
 #include <sys/types.h>
 #include <sys/uio.h>
@@ -305,7 +305,7 @@ char *id;
 	/*	
 	/*----------------------------------------------------------*/
 
-	bzero((char *)&target, sizeof(target));
+	memset((char *)&target, 0, sizeof(target));
 	g_parse_target(id, &peer_host, &target.sin_port);
 	if (peer_host == NULL) {
 		fprintf(gdb_log,"gdb: g_try_connecting...  '%s' is not a valid host:server\n",
@@ -333,7 +333,7 @@ char *id;
 	/*	
 	/*----------------------------------------------------------*/
 
-	bcopy(peer_host->h_addr,(char *)&target.sin_addr, peer_host->h_length);
+	memcpy(&target.sin_addr, peer_host->h_addr, peer_host->h_length);
 	target.sin_family = peer_host->h_addrtype;
 
 	if(connect(peer, (struct sockaddr *)&target, sizeof(target)) < 0) {
@@ -535,7 +535,7 @@ char *id;
 	/*	
 	/*----------------------------------------------------------*/
 
-	bzero((char *)&self, sizeof(self));
+	memset((char *)&self, 0, sizeof(self));
 	g_parse_target(id, &peer_host, &self.sin_port);
 	if (peer_host == NULL) {
 		GDB_GIVEUP("gdb_try_accepting: bad port not caught by g_try_connecting")
@@ -1003,7 +1003,7 @@ char *id;
        /*
         * Determine our port number
         */
-	bzero((char *)&self, sizeof(self));
+	memset((char *)&self, 0, sizeof(self));
 	if (*id == '#')
 		self.sin_port = htons((u_short)atoi(id+1));
 	else {

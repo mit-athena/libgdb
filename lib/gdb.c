@@ -12,8 +12,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v $
-/*	$Author: miki $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.2 1994-03-22 13:57:03 miki Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.3 1996-09-20 04:32:04 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -26,12 +26,12 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.2 1994-03-22 13:57:03 miki Exp $";
+static char rcsid_gdb_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb.c,v 1.3 1996-09-20 04:32:04 ghudson Exp $";
 #endif
 
 #include "mit-copyright.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <signal.h> 
 #include <pwd.h>
 #include "gdb.h"

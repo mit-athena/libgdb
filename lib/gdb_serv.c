@@ -11,8 +11,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_serv.c,v $
-/*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_serv.c,v 1.2 1993-04-28 09:43:45 vrt Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_serv.c,v 1.3 1996-09-20 04:32:07 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -21,11 +21,11 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_serv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_serv.c,v 1.2 1993-04-28 09:43:45 vrt Exp $";
+static char rcsid_gdb_serv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_serv.c,v 1.3 1996-09-20 04:32:07 ghudson Exp $";
 #endif
 
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "gdb.h"
 #include <sys/ioctl.h>
 #ifdef SOLARIS

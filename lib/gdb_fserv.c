@@ -30,8 +30,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v $
-/*	$Author: miki $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.6 1994-03-22 14:21:47 miki Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.7 1996-09-20 04:32:07 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,7 +39,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.6 1994-03-22 14:21:47 miki Exp $";
+static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.7 1996-09-20 04:32:07 ghudson Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -54,7 +54,7 @@ static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/a
 #ifdef SOLARIS
 #include <sys/filio.h>
 #endif /* SOLARIS */
-#include <strings.h>
+#include <string.h>
 /************************************************************************/
 /*	
 /*			create_forking_server 

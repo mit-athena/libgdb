@@ -10,8 +10,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_stype.c,v $
-/*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_stype.c,v 1.1 1993-10-12 03:25:18 probe Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_stype.c,v 1.2 1996-09-20 04:32:10 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,12 +39,12 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_stype_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_stype.c,v 1.1 1993-10-12 03:25:18 probe Exp $";
+static char rcsid_gdb_stype_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_stype.c,v 1.2 1996-09-20 04:32:10 ghudson Exp $";
 #endif
 
 #include "mit-copyright.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "gdb.h"
 #ifdef vax			/* XXX */
 	extern u_long ntohl(), htonl();
@@ -283,7 +283,7 @@ char *outp;					/* place to put the output */
         * Now, copy the data itself after the encoded integer length
         */
 	if (len > 0)
-		bcopy(STRING_DATA(*stp), nextp, len);
+		memcpy(nextp, STRING_DATA(*stp), len);
 						/* copy the data without */
 						/* changing representation*/
 	return (int)(nextp+len);
@@ -340,7 +340,7 @@ char *outp;					/* place to put the output */
        /*
         * Now, copy the data itself 
         */
-	bcopy(nextp, STRING_DATA(*stp), len);	/* copy the data without */
+	memcpy(STRING_DATA(*stp), nextp, len);	/* copy the data without */
 						/* changing representation*/
 	return (int)(nextp+len);
 }
@@ -641,7 +641,7 @@ char *dp;					/* pointer to the data */
 {
 	char buf[DT_EXTERNSIZE+1];
 
-	bcopy(dp, buf, DT_EXTERNSIZE);		/* copy date to buffer */
+	memcpy(buf, dp, DT_EXTERNSIZE);		/* copy date to buffer */
 	buf[DT_EXTERNSIZE] = '\0';		/* null terminate it */
 	fprintf(gdb_log, "DATE_T\t\t%s=%s\n",name,buf);
 }
@@ -772,8 +772,8 @@ char *outp;					/* place to put the output */
        /*
         * Finally, copy all the null terminated strings.
         */
-	bcopy(((char *)(tdp))+gdb_descriptor_length(tdp->field_count), 
-	      nextp, tdp->str_len);		/* copy the string data all */
+	memcpy(nextp, tdp+gdb_descriptor_length(tdp->field_count),
+	      tdp->str_len);			/* copy the string data all */
 						/* at once */
 	return (int)(nextp+tdp->str_len);
 }

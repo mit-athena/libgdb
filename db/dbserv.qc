@@ -11,8 +11,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/dbserv.qc,v $
-/*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/dbserv.qc,v 1.1 1993-10-12 03:24:42 probe Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/dbserv.qc,v 1.2 1996-09-20 04:30:59 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -32,7 +32,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_dbserv_qc[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/dbserv.qc,v 1.1 1993-10-12 03:24:42 probe Exp $";
+static char rcsid_dbserv_qc[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/dbserv.qc,v 1.2 1996-09-20 04:30:59 ghudson Exp $";
 #endif
 
 
@@ -612,7 +612,7 @@ STRING *requestp;
 				db_giveup(client);
 			null_tuple_strings(pending[next_up].tup);
 		}
-		bcopy((char *)tup, (char *)pending[next_up].tup, tpd->data_len);
+		memcpy(pending[next_up].tup, tup, tpd->data_len);
 	        fix_strings(pending[next_up].tup,  text, next_text, text_indx);
 		reset_operation(pending[next_up].yes_no);
 		start_sending_object(pending[next_up].yes_no, client,

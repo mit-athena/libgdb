@@ -9,8 +9,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_db.c,v $
-/*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_db.c,v 1.1 1993-10-12 03:25:10 probe Exp $
+/*	$Author: ghudson $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_db.c,v 1.2 1996-09-20 04:32:06 ghudson Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -28,12 +28,12 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_db_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_db.c,v 1.1 1993-10-12 03:25:10 probe Exp $";
+static char rcsid_gdb_db_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_db.c,v 1.2 1996-09-20 04:32:06 ghudson Exp $";
 #endif
 
 #include "mit-copyright.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include "gdb.h"
 #ifdef HESIOD
 #include <hesiod.h>
@@ -238,7 +238,7 @@ char **dbnamep;					/* we allocate string */
        /*
         * Try to parse as dbname@host
         */
-	at_point = index(db_ident, '@');
+	at_point = strchr(db_ident, '@');
 
        /*
         * If we got an @, then it is fully qualified, otherwise
@@ -251,7 +251,7 @@ char **dbnamep;					/* we allocate string */
 		(void) strncpy(db_name, db_ident, at_point-db_ident);
 		*(db_name+(at_point-db_ident)) = '\0';
 		(void) strcpy(host, at_point+1);
-		colon_point = index(host, ':');
+		colon_point = strchr(host, ':');
 		if (colon_point != NULL) {	/* explicit service */
 			(void) strcpy(service, colon_point+1);
 			*colon_point = '\0';

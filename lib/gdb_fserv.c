@@ -31,7 +31,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v $
 /*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.3 1993-04-28 10:01:34 vrt Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.4 1993-04-28 10:14:08 vrt Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,7 +39,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.3 1993-04-28 10:01:34 vrt Exp $";
+static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.4 1993-04-28 10:14:08 vrt Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -207,7 +207,11 @@ gdb_reaper()
         * The #ifdef GDB_NOISY_TERMINATION stuff can be turned on 
         * to get printout of final status of dying children
         */
+#ifdef POSIX
+	while (waitpid(-1,&status, WNOHANG) >0) {
+#else
 	while (wait3(&status, WNOHANG, (struct rusage *)0) >0) {
+#endif /* POSIX */
 #ifdef GDB_NOISY_TERMINATION
 		if (WIFEXITED(status)) {
 #ifdef POSIX

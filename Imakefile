@@ -4,16 +4,15 @@
 #	Created: 8/24/87
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
-#	$Author: lwvanels $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.8 1991-07-07 13:51:47 lwvanels Exp $
+#	$Author: epeisach $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.9 1992-05-01 15:15:35 epeisach Exp $
 
 CFLAGS=-O -DHESIOD
 LINTFLAGS= "-DHESIOD"
 # These are pased to the subdirs
 FLAGS=OCFLAGS=${CFLAGS}
 
-#define ISUBDIRS lib include
-#define SUBDIRS doc 
+#define ISUBDIRS lib include doc
 
 all::
 

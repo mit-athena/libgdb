@@ -12,7 +12,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Makefile,v $
 #	$Author: don $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Makefile,v 1.1 1988-06-09 16:32:36 don Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/doc/Makefile,v 1.2 1988-06-09 16:42:43 don Exp $
 #
 ###########################################################################
 
@@ -41,6 +41,7 @@ all:
 install:
 #	for i in ${SUBDIR}; do \
 #	    (cd $$i; make ${MFLAGS} DESTDIR=${DESTDIR} install); done
+	@-mkdir ${DESTDIR}${INSTDIR}
 	for i in ${SCRIBEFILES}; do \
 		(install -c $$i ${DESTDIR}${INSTDIR}/$$i); \
 	done

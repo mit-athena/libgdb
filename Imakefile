@@ -5,7 +5,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
 #	$Author: epeisach $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.1 1990-04-26 10:50:54 epeisach Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.2 1990-04-26 10:51:06 epeisach Exp $
 
 CFLAGS=	 "-O -DHESIOD"
 LINTFLAGS= "-DHESIOD"
@@ -32,7 +32,7 @@ samps: FRC
 db: FRC
 	(cd $@; make -k ${MFLAGS} OCFLAGS=${CFLAGS} all;echo "The make (above) for dbserv may blow up if Ingres is not installed.";echo "The rest of GDB should still build properly.")
 
-FRC:
+FRC::
 
 # ${STD}:
 # 	${CC} ${CFLAGS} -o $@ $@.c

@@ -10,8 +10,8 @@
 /*	Revised:	8/21/87
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_trans2.c,v $
-/*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_trans2.c,v 1.1 1993-10-12 03:25:22 probe Exp $
+/*	$Author: miki $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_trans2.c,v 1.2 1994-03-22 14:21:04 miki Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -25,9 +25,8 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_trans2_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_trans2.c,v 1.1 1993-10-12 03:25:22 probe Exp $";
+static char rcsid_gdb_trans2_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_trans2.c,v 1.2 1994-03-22 14:21:04 miki Exp $";
 #endif
-
 #include "mit-copyright.h"
 #include <sys/types.h>
 #include <errno.h>
@@ -35,6 +34,7 @@ static char rcsid_gdb_trans2_c[] = "$Header: /afs/dev.mit.edu/source/repository/
 #include "gdb.h"
 #include <sys/uio.h>
 #include <sys/socket.h>
+#include <strings.h>
 extern int errno;				/* Unix error slot */
 
 /*

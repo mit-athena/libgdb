@@ -31,7 +31,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v $
 /*	$Author: vrt $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.2 1993-04-28 09:44:53 vrt Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.3 1993-04-28 10:01:34 vrt Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -39,7 +39,7 @@
 /************************************************************************/
 
 #ifndef lint
-static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.2 1993-04-28 09:44:53 vrt Exp $";
+static char rcsid_gdb_fserv_c[] = "$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/gdb_fserv.c,v 1.3 1993-04-28 10:01:34 vrt Exp $";
 #endif
 
 #include "mit-copyright.h"
@@ -194,7 +194,11 @@ int (*validate)();
 int
 gdb_reaper()
 {
+#ifdef POSIX
+	int status;
+#else
 	union wait status;
+#endif
 	extern char *sys_siglist[];
        
        /*
@@ -206,14 +210,32 @@ gdb_reaper()
 	while (wait3(&status, WNOHANG, (struct rusage *)0) >0) {
 #ifdef GDB_NOISY_TERMINATION
 		if (WIFEXITED(status)) {
+#ifdef POSIX
+			if (WEXITSTATUS(status))
+				fprintf(gdb_log,"exited with code %d\n",
+					WEXITSTATUS(status));
+#else
 			if (status.w_retcode)
 				fprintf(gdb_log,"exited with code %d\n",
 					status.w_retcode);
+#endif /* POSIX */
 		}
 		if (WIFSIGNALED(status)) {
+#ifdef POSIX
+#ifdef SOLARIS
+			fprintf(gdb_log,"exited on %s signal%s\n",
+			       sys_siglist[WTERMSIG(status)],
+			       (status.w_coredump?"; core dumped":0));
+#else /* !SOLARIS */
+			fprintf(gdb_log,"exited on %s signal\n",
+			       sys_siglist[WTERMSIG(status));
+#endif /* SOLARIS */
+
+#else
 			fprintf(gdb_log,"exited on %s signal%s\n",
 			       sys_siglist[status.w_termsig],
 			       (status.w_coredump?"; core dumped":0));
+#endif
 		}
 #endif GDB_NOISY_TERMINATION
 	}

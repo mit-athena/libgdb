@@ -5,10 +5,10 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Makefile,v $
 #	$Author: shanzer $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Makefile,v 1.1 1987-10-28 18:38:10 shanzer Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Makefile,v 1.2 1987-10-28 18:39:22 shanzer Exp $
 
 DESTDIR=
-INSTDIR=/usr/unsupported
+INSTDIR=/usr/athena
 CFLAGS=	 "-O -DHESIOD"
 LINTFLAGS= "-DHESIOD"
 

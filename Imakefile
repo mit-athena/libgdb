@@ -1,0 +1,61 @@
+#	Imakefile for the entire GDB Package
+#
+#	Noah Mendelsohn
+#	Created: 8/24/87
+#
+#	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v $
+#	$Author: epeisach $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/Imakefile,v 1.1 1990-04-26 10:50:54 epeisach Exp $
+
+CFLAGS=	 "-O -DHESIOD"
+LINTFLAGS= "-DHESIOD"
+# These are pased to the subdirs
+FLAGS=OCFLAGS=${CFLAGS}
+
+SUBDIR= lib   include doc
+#define ISUBDIRS lib
+#define SUBDIRS $(SUBDIR)
+
+#if defined(vax) && !defined(ultrix)
+# Ingress backend exists on BSD vax
+DB=db
+#else
+# Ingress backend cannot be made on this platform
+DB=
+#endif
+
+all::	${SUBDIR} ${DB}
+
+samps: FRC
+	(cd $@; make ${MFLAGS} OCFLAGS=${CFLAGS} all)
+
+db: FRC
+	(cd $@; make -k ${MFLAGS} OCFLAGS=${CFLAGS} all;echo "The make (above) for dbserv may blow up if Ingres is not installed.";echo "The rest of GDB should still build properly.")
+
+FRC:
+
+# ${STD}:
+# 	${CC} ${CFLAGS} -o $@ $@.c
+
+install:: ${SUBDIR} db
+	for i in db; do  \
+	    (cd $$i; make -k ${MFLAGS} DESTDIR=${DESTDIR} install); done
+	echo "GDB Installation Attempt Complete"
+
+clean::
+	rm -f a.out core *.s *.o *~ .*~
+	for i in samps db; do (cd $$i; make ${MFLAGS} clean; cd ..); done
+
+depend::
+	for i in db; do \
+	    (cd $$i; make -k ${MFLAGS} depend;cd ..); done
+	echo "GDB Makefile dependencies have been rebuilt"
+
+
+lint:
+	for i in ${SUBDIR}  db; do \
+	    (cd $$i; make ${MFLAGS} OLINTFLAGS=${LINTFLAGS} lint;cd ..); done
+
+
+# DO NOT DELETE THIS LINE -- make depend may use it at some future time
+# DEPENDENCIES MUST END AT END OF FILE

@@ -12,7 +12,7 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Makefile,v $
 #	$Author: shanzer $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Makefile,v 1.1 1987-10-29 12:00:53 shanzer Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/lib/Makefile,v 1.2 1987-10-29 12:01:38 shanzer Exp $
 #
 #	Note: the profiled versions of the .o files are made in the directory
 #	named profiled.  For the benefit of make, a parallel set of 
@@ -22,7 +22,7 @@
 #
 ###########################################################################
 
-INSTDIR= /usr/lib
+INSTDIR= /usr/athena/lib
 
 LIBCSRCS=	 gdb_struct.c gdb_stype.c gdb.c gdb_trans.c \
 gdb_trans2.c gdb_conn.c gdb_serv.c gdb_fserv.c gdb_db.c gdb_debug.c gdb_ops.c

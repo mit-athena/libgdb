@@ -11,7 +11,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v $
 /*	$Author: mar $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.1 1989-05-16 21:00:15 mar Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.2 1989-05-16 21:01:44 mar Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -924,7 +924,7 @@ extern int gdb_socklen;				/* length of above */
 	/*	
 	/*----------------------------------------------------------*/
 
-#define GDB_HESIOD_NAMETYPE "service"
+#define GDB_HESIOD_NAMETYPE "gdb"
 
 	/*----------------------------------------------------------*/
 	/*	

@@ -12,14 +12,14 @@
 #
 #	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v $
 #	$Author: shanzer $
-#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.2 1987-10-29 11:59:41 shanzer Exp $
+#	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/db/Makefile,v 1.3 1987-10-29 13:46:40 shanzer Exp $
 #
 ###########################################################################
 
 INSTDIR= /usr/athena
 
 SRCS=	  dbserv.qc
-INCLIB= ../include
+INCLIB= ./include
 CFLAGS=  ${OCFLAGS} -I${INCLIB}
 LINTFLAGS= ${OLINTFLAGS} -I${INCLIB}
 INGRESBIN= /usr/rtingres/bin

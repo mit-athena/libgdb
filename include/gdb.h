@@ -11,7 +11,7 @@
 /*
 /*	$Source: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v $
 /*	$Author: probe $
-/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.3 1990-07-17 13:59:01 probe Exp $
+/*	$Header: /afs/dev.mit.edu/source/repository/athena/lib/gdb/include/gdb.h,v 1.4 1993-02-02 06:25:03 probe Exp $
 /*
 /*	Copyright 1987 by the Massachusetts Institute of Technology.
 /*	For copying and distribution information, see the file mit-copyright.h
@@ -24,6 +24,9 @@
  * matter if caller does it too.  We need it for fd_set.
  */
 #include <sys/types.h>
+#if !defined(ibm032) && !defined(vax)
+#include <time.h>
+#endif
 #include <sys/time.h>
 
 #ifndef TRUE
